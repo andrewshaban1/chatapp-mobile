@@ -34,12 +34,7 @@ export default function RegisterScreen({ navigation }: Props) {
     },
   });
 
-  console.log(control.getFieldState('email'));
-  console.log(control.getFieldState('username'));
-  console.log(control.getFieldState('password'));
-
   const onSubmit = async (values: RegisterFormValues) => {
-    console.log(values);
     try {
       await register(values);
     } catch (error: unknown) {
@@ -92,7 +87,7 @@ export default function RegisterScreen({ navigation }: Props) {
 
         <TouchableOpacity
           style={[styles.button, isLoading && styles.buttonDisabled]}
-          onPress={void handleSubmit(onSubmit)}
+          onPress={handleSubmit(onSubmit)}
           disabled={isLoading}
         >
           {isLoading ? (
@@ -147,7 +142,7 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     fontSize: 16,
     color: '#111827',
-    marginBottom: 16,
+    marginBottom: 6,
   },
   button: {
     backgroundColor: '#6366f1',

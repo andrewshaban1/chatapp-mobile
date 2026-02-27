@@ -25,6 +25,7 @@ export default function FormInput<T extends FieldValues>({
   control,
   name,
   label,
+  style,
   ...textInputProps
 }: FormInputProps<T>) {
   return (
@@ -37,17 +38,15 @@ export default function FormInput<T extends FieldValues>({
       }) => (
         <View style={styles.wrapper}>
           {label && <Text style={styles.label}>{label}</Text>}
-          {console.log('value', value)}
-          {console.log('error', error)}
           <TextInput
-            style={[styles.input, error && styles.inputError]}
+            style={[style, error && styles.inputError]}
             onChangeText={onChange}
             onBlur={onBlur}
             value={value}
             placeholderTextColor="#9ca3af"
             {...textInputProps}
           />
-          {error && <Text style={styles.errorText}>{error.message}</Text>}
+          {<Text style={styles.errorText}>{error && error.message}</Text>}
         </View>
       )}
     />
@@ -56,7 +55,7 @@ export default function FormInput<T extends FieldValues>({
 
 const styles = StyleSheet.create({
   wrapper: {
-    marginBottom: 16,
+    marginBottom: 10,
   },
   label: {
     fontSize: 13,
@@ -64,21 +63,12 @@ const styles = StyleSheet.create({
     color: '#374151',
     marginBottom: 6,
   },
-  input: {
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: '#e5e7eb',
-    borderRadius: 12,
-    paddingHorizontal: 16,
-    paddingVertical: 14,
-    fontSize: 16,
-    color: '#111827',
-  },
   inputError: {
     borderColor: '#ef4444',
   },
   errorText: {
-    marginTop: 4,
+    marginLeft: 10,
+    paddingLeft: 4,
     fontSize: 12,
     color: '#ef4444',
   },
